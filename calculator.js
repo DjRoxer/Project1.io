@@ -2,12 +2,6 @@ $(document).ready(function() { // do this when the document is loaded
 	
 });
 
-input.addEventListener("keyup", function(event) {
-  if (event.keyCode === 13) {
-   event.preventDefault();
-   inputEqual();
-  }
-});
 function form (str){
 	for (var i =0; i<str.length;i++)
 	{
@@ -133,9 +127,32 @@ function calc(element)
 		case '+':
 			var head = element[0];
 			var tail = [];
+			var newTail=[];
+			var ind = 0;
+			var mid;
+			var op;
 			tail = element.splice(2,element.length);
-			tail = calc(tail);
-			return head + tail;
+			for (var i = 3; i < tail.length; i=i+2)
+			{
+				if(tail[i]=='+'|| tail[i] == '-')
+				{
+					op = tail[i];
+					mid = calc (tail.splice(0,i));
+					newTail=tail.splice(i-2,tail.length);
+					console.log("mid " + mid);
+					console.log("tail" + newTail);
+
+					break;
+				}
+			}
+			if (op == '+')
+			{
+				return head + mid + parseInt(calc(newTail));
+			}
+			else{
+				return head + mid - parseInt(calc(newTail));
+			}
+		break;
 		break;
 		case '-':
 			var head = element[0];

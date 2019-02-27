@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Calculator Demo</title>
+	
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+	<link rel="stylesheet" href="calculator.css">
+
+</head>
+<body>
+	<h1 >Calculator</h1>
+	<div class="container">
+
+
+	<form id ="display">
+		<input id="number_input" placeholder="Type Here" align="Right">
+		<script>
+				var input = document.getElementById("number_input");
+				input.addEventListener("keyup", function(event) {
+  				if (event.keyCode === 13) {
+   					event.preventDefault();
+   					document.getElementById("equal").click();
+  				}
+			});
+		</script>
+	</form>
+
+
+	<div id = "NumberPad" role ="Number Pad"></div>
+		<div id = "btnRow">
+			<button id = "one" 		class = "padBtn"	onclick="inputFunc('1')"> 1 </button>
+			<button id = "two" 		class = "padBtn"	onclick="inputFunc('2')"> 2 </button>
+			<button id = "three"	class = "padBtn"	onclick="inputFunc('3')"> 3 </button>
+			<button id = "plus"		class = "padBtn"	onclick="inputFunc('+')"> + </button>
+		</div>
+		<div id = "btnRow">
+			<button id = "four"		class = "padBtn"	onclick="inputFunc('4')"> 4 </button>
+			<button id = "five"		class = "padBtn"	onclick="inputFunc('5')"> 5 </button>
+			<button id = "six"		class = "padBtn"	onclick="inputFunc('6')"> 6 </button>
+			<button id = "subtract"	class = "padBtn"	onclick="inputFunc('-')"> - </button>
+		</div>
+		<div id = "btnRow">
+			<button id = "seven"	class = "padBtn"	onclick="inputFunc('7')"> 7 </button>
+			<button id = "eight"	class = "padBtn"	onclick="inputFunc('8')"> 8 </button>
+			<button id = "nine"		class = "padBtn"	onclick="inputFunc('9')"> 9 </button>
+			<button id = "mult"		class = "padBtn"	onclick="inputFunc('*')"> * </button>
+		</div>
+		<div id = "btnRow">
+			<button id = "clear"	class = "padBtn"	onclick="inputClear()"> c </button>
+			<button id = "zero"		class = "padBtn"	onclick="inputFunc('0')"> 0 </button>
+			<button id = "equal"	class = "padBtn"	onclick="inputEqual()"> = </button>
+			<button id = "divide"	class = "padBtn"	onclick="inputFunc('/')"> / </button>
+		</div>
+
+		  
+</div>
+
+
+
+
+
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="calculator.js"></script>
+</body>
+
+
+
+</html>

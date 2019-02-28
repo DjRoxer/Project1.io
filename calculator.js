@@ -101,6 +101,7 @@ function calc(elements)
 
 	while (high_orders)
 	{
+		console.log("index: "+ ind + ", length: "+ newArr.length);
 		if (newArr.length == 3)
 		{
 			return base(newArr);
@@ -114,9 +115,9 @@ function calc(elements)
 		}
 		
 
-		if((newArr[ind] == '*' || newArr[ind]== '/') && ((newArr.length-ind) > 3) )
+		if((newArr[ind] == '*' || newArr[ind]== '/') && ((newArr.length-ind) >= 2) )
 		{
-			console.log("operating: " + newArr[ind]);
+			console.log("Higher Order Operating: " + newArr[ind]);
 			var subArr = newArr.slice(ind-1,ind+2);
 			var subAns = base (subArr);
 			var head = newArr.slice(0,ind-1);
@@ -150,6 +151,7 @@ function calc(elements)
 }
 function base(elements)
 {
+	console.log(elements);
 	var op = elements[1];
 	if (op == '+')
 	{

@@ -79,111 +79,82 @@ function inputEqual()
 function calc(element)
 {
 	var op = element[1];
-	var ans, a;
-	if(element.length == 3)
+	if (element.length == 3)
 	{
-		if (op == '*')
-			ans = element[0] * element[2];
-		if (op == '/')
-			ans = element[0] / element[2];
+		
 		if (op == '+')
-			ans = element[0] + element[2];
+		{
+			return add(element[0], element[2]);
+		}
 		if (op == '-')
-			ans = element[0] - element[2];
-		console.log("here is the ans value " + ans);
-		return ans;
-
+		{
+			return sub(element[0], element[2]);
+		}
+		if (op == '/')
+		{
+			return div(element[0], element[2]);
+		}
+		if (op == '*')
+		{
+			return mult(element[0], element[2]);
+		}
 	}
-	if (element.length==0)
+	console.log("length is: " + element.length ); 
+	if(element.length >=5)
 	{
-		return element[0];
+		var op2 = element[3];
+		if (op == '+')
+		{
+			if(op2 == '*' || op2 == '/')
+			{
+				var mid = calc(element.splice(2,5));
+				var end = [];
+				
+				end = element.splice(5,element.length)
+				console.log("end: " + end );
+				
+				console.log(mid + " + " + end);
+				end.unshift(mid);
+				
+				return (element[0] + calc(end));
+			}
+			else
+			{
+				var head = element[0]+element[2];
+				var end = element.splice(3,element.length);
+				console.log("end: " + end);
+				console.log("elements: " + end.unshift(head));
+				return calc(end.unshift(head));
+			}
+		}
+		if (op == '-')
+		{
+			return sub(element[0], element[2]);
+		}
+		if (op == '/')
+		{
+			return div(element[0], element[2]);
+		}
+		if (op == '*')
+		{
+			return mult(element[0], element[2]);
+		}
 	}
-	switch(op){
-		case '*':
-			var head = element[0] * element[2];
-			// var tail = element.splice(0,3);
-			console.log("Element befor splice: "+ element +"\n");
-			var tail = element.splice(3,element.length);
-			console.log("the tail is: " + tail + "\n");
-			tail.unshift(head);
-			console.log("new element list is: " + tail + "\n");
-			var ans = calc(tail);
-			console.log(element[0]+ " " +element[1] + " "+ element[2]);
-			console.log("solution from above: " + ans);
-			return ans;
-		break;
-		case '/':
-			var head = element[0] / element[2];
-			// var tail = element.splice(0,3);
-			console.log("Element befor splice: "+ element +"\n");
-			var tail = element.splice(3,element.length);
-			console.log("the tail is: " + tail + "\n");
-			tail.unshift(head);
-			console.log("new element list is: " + tail + "\n");
-			var ans = calc(tail);
-			console.log(element[0]+ " " +element[1] + " "+ element[2]);
-			console.log("solution from above: " + ans);
-			return ans;
-		case '+':
-			var head = element[0];
-			var tail = [];
-			var newTail=[];
-			var ind = 0;
-			var mid;
-			var op;
-			tail = element.splice(2,element.length);
-			for (var i = 3; i < tail.length; i=i+2)
-			{
-				if(tail[i]=='+'|| tail[i] == '-')
-				{
-					op = tail[i];
-					mid = calc (tail.splice(0,i));
-					newTail=tail.splice(i-2,tail.length);
-					console.log("mid " + mid);
-					console.log("tail" + newTail);
-
-					break;
-				}
-			}
-			if (op == '+')
-			{
-				return head + mid + parseInt(calc(newTail));
-			}
-			else{
-				return head + mid - parseInt(calc(newTail));
-			}
-		break;
-		break;
-		case '-':
-			var head = element[0];
-			var tail = [];
-			var newTail=[];
-			var ind = 0;
-			var mid;
-			var op;
-			tail = element.splice(2,element.length);
-			for (var i = 3; i < tail.length; i=i+2)
-			{
-				if(tail[i]=='+'|| tail[i] == '-')
-				{
-					op = tail[i];
-					mid = calc (tail.splice(0,i));
-					newTail=tail.splice(i-2,tail.length);
-					console.log("mid " + mid);
-					console.log("tail" + newTail);
-
-					break;
-				}
-			}
-			if (op == '+')
-			{
-				return head - mid + parseInt(calc(newTail));
-			}
-			else{
-				return head - mid - parseInt(calc(newTail));
-			}
-		break;
-	}
-
 	return (element);
+}
+function add(x, y)
+{
+	return x + y;
+}
+function sub(x, y)
+{
+	return x-y;
+}
+function mult(x,y)
+{
+	return x * y;
+}
+function div(x,y)
+{
+	return x/y;
 }

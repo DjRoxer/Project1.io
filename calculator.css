@@ -9,14 +9,14 @@ div {
 .padBtn {
 
 	margin: 2px;
-	width: 150px;
-	height: 150px;
+	width: 100px;
+	height: 100px;
 	text-align: center;
 	font-size: 50px;
 
 }
 input {
-	width: grid 4;
+	width: 400px;
 	height:75px;
 	font-size: 50px;
 	margin: 10px;
